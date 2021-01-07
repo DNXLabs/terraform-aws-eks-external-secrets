@@ -3,6 +3,8 @@
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-eks-external-secrets)](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/blob/master/LICENSE)
 
+Terraform module for deploying [kubernetes-external-secrets](https://github.com/external-secrets/kubernetes-external-secrets), this enables to use AWS Secrets Manager and SSM Parameters inside a pre-existing EKS cluster.
+
 <!--- BEGIN_TF_DOCS --->
 
 ## Requirements
