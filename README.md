@@ -8,7 +8,7 @@ Terraform module for deploying [kubernetes-external-secrets](https://github.com/
 ## Usage
 
 ```
-module "cloudwatch_logs" {
+module "external_secrets" {
   source = "git::https://github.com/DNXLabs/terraform-aws-eks-external-secrets.git"
 
   enabled = true
