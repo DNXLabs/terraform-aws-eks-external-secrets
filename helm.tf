@@ -42,12 +42,8 @@ resource "helm_release" "kubernetes_external_secrets" {
     value = true
   }
 
-  dynamic "set" {
-    for_each = var.settings
+  values = [
+    yamlencode(var.settings)
+  ]
 
-    content {
-      name  = set.key
-      value = set.value
-    }
-  }
 }

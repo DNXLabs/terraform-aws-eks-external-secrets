@@ -71,7 +71,6 @@ variable "mod_dependency" {
 }
 
 variable "settings" {
-  type        = map(any)
   default     = {}
   description = "Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/kubernetes-external-secrets/tree/master/charts/kubernetes-external-secrets"
 }
