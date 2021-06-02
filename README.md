@@ -318,7 +318,7 @@ spec:
 | namespace | Kubernetes namespace to deploy EKS Spot termination handler Helm chart. | `string` | `"kube-external-secrets"` | no |
 | secrets\_aws\_region | AWS region where secrets are stored. | `string` | n/a | yes |
 | service\_account\_name | External Secrets service account name | `string` | `"external-secrets"` | no |
-| settings | Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/kubernetes-external-secrets/tree/master/charts/kubernetes-external-secrets | `map(any)` | `{}` | no |
+| settings | Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/kubernetes-external-secrets/tree/master/charts/kubernetes-external-secrets | `map` | `{}` | no |
 
 ## Outputs
 
