@@ -13,6 +13,12 @@ variable "secrets_aws_region" {
   description = "AWS region where secrets are stored."
 }
 
+variable "log_level" {
+  type        = string
+  default     = "info"
+  description = "Application log level"
+}
+
 variable "cluster_identity_oidc_issuer" {
   type        = string
   description = "The OIDC Identity issuer for the cluster."
