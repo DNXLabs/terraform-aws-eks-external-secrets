@@ -18,6 +18,11 @@ resource "helm_release" "kubernetes_external_secrets" {
   }
 
   set {
+    name  = "env.LOG_LEVEL"
+    value = var.log_level
+  }
+
+  set {
     name  = "serviceAccount.create"
     value = "true"
   }
