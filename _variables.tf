@@ -8,17 +8,6 @@ variable "cluster_name" {
   description = "The name of the cluster"
 }
 
-variable "secrets_aws_region" {
-  type        = string
-  description = "AWS region where secrets are stored."
-}
-
-variable "log_level" {
-  type        = string
-  default     = "info"
-  description = "Application log level"
-}
-
 variable "cluster_identity_oidc_issuer" {
   type        = string
   description = "The OIDC Identity issuer for the cluster."
@@ -31,19 +20,19 @@ variable "cluster_identity_oidc_issuer_arn" {
 
 variable "helm_chart_name" {
   type        = string
-  default     = "kubernetes-external-secrets"
+  default     = "external-secrets"
   description = "External Secrets chart name."
 }
 
 variable "helm_chart_release_name" {
   type        = string
-  default     = "kubernetes-external-secrets"
+  default     = "external-secrets"
   description = "External Secrets release name."
 }
 
 variable "helm_chart_repo" {
   type        = string
-  default     = "https://external-secrets.github.io/kubernetes-external-secrets/"
+  default     = "https://charts.external-secrets.io"
   description = "External Secrets repository name."
 }
 
@@ -61,7 +50,7 @@ variable "create_namespace" {
 
 variable "namespace" {
   type        = string
-  default     = "kube-external-secrets"
+  default     = "external-secrets"
   description = "Kubernetes namespace to deploy EKS Spot termination handler Helm chart."
 }
 
@@ -78,5 +67,5 @@ variable "mod_dependency" {
 
 variable "settings" {
   default     = {}
-  description = "Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/kubernetes-external-secrets/tree/master/charts/kubernetes-external-secrets"
+  description = "Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/external-secrets/tree/main/deploy/charts/external-secrets"
 }

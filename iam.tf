@@ -1,7 +1,6 @@
 # Policy
-data "aws_iam_policy_document" "kubernetes_external_secrets" {
+data "aws_iam_policy_document" "external_secrets" {
   count = var.enabled ? 1 : 0
-
   statement {
     actions = [
       "secretsmanager:GetResourcePolicy",
@@ -17,7 +16,7 @@ data "aws_iam_policy_document" "kubernetes_external_secrets" {
 
   statement {
     actions = [
-      "ssm:GetParameter"
+      "ssm:GetParameter*"
     ]
     resources = [
       "*",
@@ -27,20 +26,19 @@ data "aws_iam_policy_document" "kubernetes_external_secrets" {
 
 }
 
-resource "aws_iam_policy" "kubernetes_external_secrets" {
+resource "aws_iam_policy" "external_secrets" {
   depends_on  = [var.mod_dependency]
   count       = var.enabled ? 1 : 0
   name        = "${var.cluster_name}-external-secrets"
   path        = "/"
   description = "Policy for external secrets service"
 
-  policy = data.aws_iam_policy_document.kubernetes_external_secrets[0].json
+  policy = data.aws_iam_policy_document.external_secrets[0].json
 }
 
 # Role
-data "aws_iam_policy_document" "kubernetes_external_secrets_assume" {
+data "aws_iam_policy_document" "external_secrets_assume" {
   count = var.enabled ? 1 : 0
-
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
 
@@ -62,14 +60,14 @@ data "aws_iam_policy_document" "kubernetes_external_secrets_assume" {
   }
 }
 
-resource "aws_iam_role" "kubernetes_external_secrets" {
+resource "aws_iam_role" "external_secrets" {
   count              = var.enabled ? 1 : 0
   name               = "${var.cluster_name}-external-secrets"
-  assume_role_policy = data.aws_iam_policy_document.kubernetes_external_secrets_assume[0].json
+  assume_role_policy = data.aws_iam_policy_document.external_secrets_assume[0].json
 }
 
-resource "aws_iam_role_policy_attachment" "kubernetes_external_secrets" {
+resource "aws_iam_role_policy_attachment" "external_secrets" {
   count      = var.enabled ? 1 : 0
-  role       = aws_iam_role.kubernetes_external_secrets[0].name
-  policy_arn = aws_iam_policy.kubernetes_external_secrets[0].arn
+  role       = aws_iam_role.external_secrets[0].name
+  policy_arn = aws_iam_policy.external_secrets[0].arn
 }

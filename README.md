@@ -1,15 +1,14 @@
-# terraform-aws-eks-external-secrets
-
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-eks-external-secrets)](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/blob/master/LICENSE)
 
-Terraform module for deploying [kubernetes-external-secrets](https://github.com/external-secrets/kubernetes-external-secrets), this enables to use AWS Secrets Manager and SSM Parameters inside a pre-existing EKS cluster.
+Terraform module for deploying [external-secrets](https://github.com/external-secrets/external-secrets), this enables to use AWS Secrets Manager and SSM Parameters inside a pre-existing EKS cluster.
 
 ## Usage
 
 ```
+
 module "external_secrets" {
-  source = "git::https://github.com/DNXLabs/terraform-aws-eks-external-secrets.git?ref=0.1.2"
+  source = "git::https://github.com/DNXLabs/terraform-aws-eks-external-secrets.git?ref=2.0.0"
 
   enabled = true
 
@@ -17,6 +16,7 @@ module "external_secrets" {
   cluster_identity_oidc_issuer     = module.eks_cluster.cluster_oidc_issuer_url
   cluster_identity_oidc_issuer_arn = module.eks_cluster.oidc_provider_arn
   secrets_aws_region               = data.aws_region.current.name
+
 }
 ```
 
@@ -29,6 +29,12 @@ module "external_secrets" {
 3. Controller uses `ExternalSecrets` to fetch secret data from external providers (e.g, AWS Secrets Manager)
 4. Controller upserts `Secrets`
 5. `Pods` can access `Secrets` normally
+
+## Add a SecretStore or ClusterSecretStore
+
+Please check the documentation: https://external-secrets.io/v0.7.2/api/secretstore/
+
+Please check the documentation: https://external-secrets.io/v0.7.2/api/clustersecretstore/
 
 ## Add a secret
 
@@ -310,16 +316,14 @@ spec:
 | cluster\_name | The name of the cluster | `string` | n/a | yes |
 | create\_namespace | Whether to create k8s namespace with name defined by `namespace` | `bool` | `true` | no |
 | enabled | n/a | `bool` | `true` | no |
-| helm\_chart\_name | External Secrets chart name. | `string` | `"kubernetes-external-secrets"` | no |
-| helm\_chart\_release\_name | External Secrets release name. | `string` | `"kubernetes-external-secrets"` | no |
-| helm\_chart\_repo | External Secrets repository name. | `string` | `"https://external-secrets.github.io/kubernetes-external-secrets/"` | no |
+| helm\_chart\_name | External Secrets chart name. | `string` | `"external-secrets"` | no |
+| helm\_chart\_release\_name | External Secrets release name. | `string` | `"external-secrets"` | no |
+| helm\_chart\_repo | External Secrets repository name. | `string` | `"https://charts.external-secrets.io"` | no |
 | helm\_chart\_version | External Secrets chart version. | `string` | `"7.2.1"` | no |
-| log\_level | Application log level | `string` | `"info"` | no |
 | mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable | `any` | `null` | no |
-| namespace | Kubernetes namespace to deploy EKS Spot termination handler Helm chart. | `string` | `"kube-external-secrets"` | no |
-| secrets\_aws\_region | AWS region where secrets are stored. | `string` | n/a | yes |
+| namespace | Kubernetes namespace to deploy EKS Spot termination handler Helm chart. | `string` | `"external-secrets"` | no |
 | service\_account\_name | External Secrets service account name | `string` | `"external-secrets"` | no |
-| settings | Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/kubernetes-external-secrets/tree/master/charts/kubernetes-external-secrets | `map` | `{}` | no |
+| settings | Additional settings which will be passed to the Helm chart values, see https://github.com/external-secrets/external-secrets/tree/main/deploy/charts/external-secrets | `map` | `{}` | no |
 
 ## Outputs
 
