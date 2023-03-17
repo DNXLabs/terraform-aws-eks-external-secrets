@@ -319,7 +319,7 @@ spec:
 | helm\_chart\_name | External Secrets chart name. | `string` | `"external-secrets"` | no |
 | helm\_chart\_release\_name | External Secrets release name. | `string` | `"external-secrets"` | no |
 | helm\_chart\_repo | External Secrets repository name. | `string` | `"https://charts.external-secrets.io"` | no |
-| helm\_chart\_version | External Secrets chart version. | `string` | `"7.2.1"` | no |
+| helm\_chart\_version | External Secrets chart version. | `string` | `"0.7.1"` | no |
 | mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable | `any` | `null` | no |
 | namespace | Kubernetes namespace to deploy EKS Spot termination handler Helm chart. | `string` | `"external-secrets"` | no |
 | service\_account\_name | External Secrets service account name | `string` | `"external-secrets"` | no |
