@@ -1,15 +1,14 @@
-# terraform-aws-eks-external-secrets
-
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-eks-external-secrets)](https://github.com/DNXLabs/terraform-aws-eks-external-secrets/blob/master/LICENSE)
 
-Terraform module for deploying [kubernetes-external-secrets](https://github.com/external-secrets/kubernetes-external-secrets), this enables to use AWS Secrets Manager and SSM Parameters inside a pre-existing EKS cluster.
+Terraform module for deploying [external-secrets](https://github.com/external-secrets/external-secrets), this enables to use AWS Secrets Manager and SSM Parameters inside a pre-existing EKS cluster.
 
 ## Usage
 
 ```
+
 module "external_secrets" {
-  source = "git::https://github.com/DNXLabs/terraform-aws-eks-external-secrets.git?ref=0.1.2"
+  source = "git::https://github.com/DNXLabs/terraform-aws-eks-external-secrets.git?ref=2.0.0"
 
   enabled = true
 
@@ -17,6 +16,7 @@ module "external_secrets" {
   cluster_identity_oidc_issuer     = module.eks_cluster.cluster_oidc_issuer_url
   cluster_identity_oidc_issuer_arn = module.eks_cluster.oidc_provider_arn
   secrets_aws_region               = data.aws_region.current.name
+
 }
 ```
 
@@ -29,6 +29,12 @@ module "external_secrets" {
 3. Controller uses `ExternalSecrets` to fetch secret data from external providers (e.g, AWS Secrets Manager)
 4. Controller upserts `Secrets`
 5. `Pods` can access `Secrets` normally
+
+## Add a SecretStore or ClusterSecretStore
+
+Please check the documentation: https://external-secrets.io/v0.7.2/api/secretstore/
+
+Please check the documentation: https://external-secrets.io/v0.7.2/api/clustersecretstore/
 
 ## Add a secret
 
