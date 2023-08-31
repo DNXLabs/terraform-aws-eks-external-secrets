@@ -5,7 +5,7 @@ resource "helm_release" "external_secrets" {
   chart      = var.helm_chart_release_name
   repository = var.helm_chart_repo
   version    = var.helm_chart_version
-  namespace  = kubernetes_namespace.external_secrets[0].id
+  namespace  = length(kubernetes_namespace.external_secrets) == 1 ? kubernetes_namespace.external_secrets[0].id : var.namespace
 
   set {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
