@@ -295,7 +295,7 @@ spec:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| aws | >= 3.13, < 4.0 |
+| aws | >= 3.13 |
 | helm | >= 1.0, < 3.0 |
 | kubernetes | >= 1.10.0, < 3.0.0 |
 
@@ -303,7 +303,7 @@ spec:
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.13, < 4.0 |
+| aws | >= 3.13 |
 | helm | >= 1.0, < 3.0 |
 | kubernetes | >= 1.10.0, < 3.0.0 |
 
@@ -327,7 +327,9 @@ spec:
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| iam\_role\_arn | n/a |
 
 <!--- END_TF_DOCS --->
 
