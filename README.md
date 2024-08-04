@@ -15,8 +15,6 @@ module "external_secrets" {
   cluster_name                     = module.eks_cluster.cluster_id
   cluster_identity_oidc_issuer     = module.eks_cluster.cluster_oidc_issuer_url
   cluster_identity_oidc_issuer_arn = module.eks_cluster.oidc_provider_arn
-  secrets_aws_region               = data.aws_region.current.name
-
 }
 ```
 
@@ -295,17 +293,17 @@ spec:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| aws | >= 3.13, < 4.0 |
-| helm | >= 1.0, < 3.0 |
-| kubernetes | >= 1.10.0, < 3.0.0 |
+| aws | >= 3.13 |
+| helm | >= 1.0 |
+| kubernetes | >= 1.10.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.13, < 4.0 |
-| helm | >= 1.0, < 3.0 |
-| kubernetes | >= 1.10.0, < 3.0.0 |
+| aws | >= 3.13 |
+| helm | >= 1.0 |
+| kubernetes | >= 1.10.0 |
 
 ## Inputs
 
