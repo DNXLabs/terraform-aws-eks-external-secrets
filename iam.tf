@@ -71,3 +71,4 @@ resource "aws_iam_role_policy_attachment" "external_secrets" {
   role       = aws_iam_role.external_secrets[0].name
   policy_arn = aws_iam_policy.external_secrets[0].arn
 }
+
